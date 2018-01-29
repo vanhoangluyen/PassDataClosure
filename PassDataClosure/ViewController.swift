@@ -9,9 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet var labelText: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -19,7 +21,12 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destination = segue.destination as? InputVC else { return  }
+        destination.onCompletion = { [weak self] (data) in
+            self?.labelText.text = data
+        }
+    }
 
 }
 
