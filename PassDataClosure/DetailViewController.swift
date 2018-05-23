@@ -8,14 +8,18 @@
 
 import UIKit
 
-class InputVC: UIViewController {
+class DetailViewController: UIViewController {
     @IBOutlet var inputTextField: UITextField!
-    var onCompletion: ((_ data: String) -> ())?
     
+    
+    var onCompletion: ((_ data: String) -> ())?
+    var recieveData: String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        if let data = recieveData {
+            inputTextField.text = data
+        }
     }
 
     override func didReceiveMemoryWarning() {
